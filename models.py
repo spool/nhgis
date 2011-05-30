@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 
 class Tract(models.Model):
+
     nhgisst = models.CharField(max_length=3)
     nhgiscty = models.CharField(max_length=4)
     gisjoin = models.CharField(max_length=16)
@@ -8,9 +9,10 @@ class Tract(models.Model):
     shape_area = models.FloatField()
     shape_len = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
-    blockgr = models.CharField(max_length=13, blank=True, null=True)
+    blockgr = models.CharField(max_length=13, null=True)
     objects = models.GeoManager()
 
+    # TODO: Make set_block a pre_save signal
     def set_blockgr(self):
         s = self.gisjoin
         print s
