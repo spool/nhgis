@@ -1,10 +1,11 @@
 from django.contrib.gis.db import models
 from django.contrib.localflavor.us.models import USStateField
+from fips.fields import USStateFipsField, USStateFipsCode
 
 class Tract(models.Model):
 
     nhgisst = models.CharField(max_length=3)
-    state = USStateField(blank=True, null=True)
+    state = USStateFipsField(blank=True, null=True)
     nhgiscty = models.CharField(max_length=4)
     gisjoin = models.CharField(max_length=16)
     gisjoin2 = models.CharField(max_length=15)
@@ -23,6 +24,13 @@ class Tract(models.Model):
             return s[1:3] + s[5:7] + s[8:12] + '.' + '00'
         else:
             return s[1:3] + s[5:7] + s[8:12] + '.' + s[12:13]
+
+    def set_state(self):
+        self.state = USStateFipsCode(self.nhgisst[:2])
+        self.save()
+
+    def set_exchanges(self):
+        exchanges = Exchange.us.filter(coordinates__within=self.geom)
 
 # Auto-generated `LayerMapping` dictionary for Tract model
 tract_mapping = {
