@@ -6,7 +6,7 @@ from area_codes.models import Exchange
 from nodes.models import NodeTimePoint, TIME_SERIES_START_DATE, TIME_SERIES_END_DATE
 from stats_dataset import StataDataset
 
-dataset = StataDataset('exchange_data.dta', path='~/data')
+dataset = StataDataset('exchange_data.dta', path='nhgis/data')
 
 class ContinentalUSTractManager(models.GeoManager):
 
