@@ -1,2 +1,10 @@
 .*.sw*
 *.pyc
+data/*.dbf
+data/*.prj
+data/*.sbn
+data/*.sbx
+data/*.shp
+data/*.shp.xml
+data/*.shx
+

@@ -26,7 +26,7 @@ class Tract(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     blockgr = models.CharField(max_length=13, null=True)
     exchange_area = models.ForeignKey('exchange_areas.ExchangeArea', null=True, related_name='tracts')
-    fixed_exchange = models.BooleanField(default=False)
+    fixed_exchange_area = models.BooleanField(default=False)
     puma = models.ForeignKey('ipums.PUMA', null=True)
     fixed_puma = models.BooleanField(default=False)
     cont_us = ContinentalUSTractManager()
