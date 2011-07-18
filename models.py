@@ -25,6 +25,7 @@ class Tract(models.Model):
     shape_len = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
     blockgr = models.CharField(max_length=13, null=True)
+    exchange_area = models.ForeignKey('exchange_areas.ExchangeArea', null=True, related_name='tracts')
     fixed_exchange = models.BooleanField(default=False)
     puma = models.ForeignKey('ipums.PUMA', null=True)
     fixed_puma = models.BooleanField(default=False)
